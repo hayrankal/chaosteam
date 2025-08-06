@@ -36,4 +36,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/hayrankal/emoemote/re
 
 
   
-loadstring(game:HttpGet("https://raw.githubusercontent.com/hayrankal/api.overdrivehub.xyz/refs/heads/main/mm2emotegui"))()
+
